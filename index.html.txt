@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AE Freelancing Agency - Design. Digital. Domination.</title>
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #151515;
+            --card-bg: rgba(25, 25, 35, 0.6);
+            --neon-blue: #00d4ff;
+            --neon-purple: #b537ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --gradient-1: linear-gradient(135deg, #00d4ff 0%, #b537ff 100%);
+            --gradient-2: linear-gradient(135deg, #b537ff 0%, #00d4ff 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: brightness(1.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: radial-gradient(ellipse at top, rgba(0, 212, 255, 0.15), transparent 50%),
+                        radial-gradient(ellipse at bottom, rgba(181, 55, 255, 0.15), transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.2;
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.2;
+            bottom: -150px;
+            left: -150px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-30px) translateX(30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--neon-purple);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--primary-bg);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.8);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(181, 55, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gradient-2);
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(181, 55, 255, 0.6);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--gradient-1);
+            color: var(--primary-bg);
+            padding: 5px 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 80px rgba(0, 212, 255, 0.4);
+            border-color: var(--neon-blue);
+        }
+
+        .pricing-header h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-header p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price span {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .maintenance {
+            color: var(--neon-purple);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--neon-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(181, 55, 255, 0.3);
+            border-color: var(--neon-purple);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(181, 55, 255, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--neon-blue);
+        }
+
+        .portfolio-info {
+            padding: 2rem;
+        }
+
+        .portfolio-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .portfolio-info p {
+            color: var(--text-secondary);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-visual {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--neon-blue);
+            transform: translateX(10px);
+        }
+
+        .contact-item h4 {
+            color: var(--neon-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-bg);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            width: auto;
+            filter: brightness(1.2);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Page Sections - Hidden by default */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-purple);
+            box-shadow: 0 15px 40px rgba(181, 55, 255, 0.2);
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid,
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="AE_freelancing_agecy.png" alt="AE Freelancing Agency">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="showPage('home')">Home</a></li>
+                <li><a href="#services" onclick="showPage('services')">Services</a></li>
+                <li><a href="#packages" onclick="showPage('packages')">Packages</a></li>
+                <li><a href="#portfolio" onclick="showPage('portfolio')">Portfolio</a></li>
+                <li><a href="#about" onclick="showPage('about')">About</a></li>
+                <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page-section active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="tagline">DESIGN. DIGITAL. DOMINATION.</div>
+                <h1>We Build Brands That Stand Out in the Digital World</h1>
+                <p>AE Freelancing Agency delivers powerful design, creative content, and high-converting websites for modern businesses.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" onclick="showPage('contact')" class="btn btn-primary">Get Started</a>
+                    <a href="#packages" onclick="showPage('packages')" class="btn btn-secondary">View Packages</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Preview -->
+        <section>
+            <div class="section-header">
+                <h2>What We Do Best</h2>
+                <p>Complete digital solutions to elevate your brand</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Logo Designing</h3>
+                    <p>Unique, memorable logos that capture your brand essence and make lasting impressions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Social Media Creatives</h3>
+                    <p>Eye-catching Instagram posts and graphics that drive engagement and grow your audience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Website Design & Development</h3>
+                    <p>High-converting, responsive websites that turn visitors into customers.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#services" onclick="showPage('services')" class="btn btn-secondary">View All Services</a>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section>
+            <div class="section-header">
+                <h2>Client Success Stories</h2>
+                <p>What our clients say about working with us</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"AE transformed our online presence completely. The website they created is stunning and our sales have doubled since launch!"</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Rahul Kumar</h4>
+                            <p>E-commerce Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Professional, creative, and always on time. The team at AE delivered exactly what we needed for our brand identity."</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PS</div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Startup Founder</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Their social media designs helped us grow from 500 to 10,000 followers in just 3 months. Highly recommended!"</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AM</div>
+                        <div class="author-info">
+                            <h4>Arjun Mehta</h4>
+                            <p>Influencer & Content Creator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page-section">
+        <section style="padding-top: 8rem;">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive digital solutions tailored to your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Logo Designing</h3>
+                    <p>Create a powerful visual identity with custom logo designs that represent your brand values and resonate with your target audience. We craft memorable logos that stand the test of time.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Instagram Posts & Social Media Creatives</h3>
+                    <p>Boost your social media presence with professionally designed posts, stories, and graphics optimized for engagement. Stand out in crowded feeds and build a loyal following.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎭</div>
+                    <h3>Posters & Graphic Design</h3>
+                    <p>From event promotions to marketing materials, we design eye-catching posters and graphics that communicate your message effectively and attract attention.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Website Design & Development</h3>
+                    <p>Build your digital home with custom websites that combine stunning design with powerful functionality. Mobile-responsive, SEO-optimized, and built to convert visitors into customers.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✍️</div>
+                    <h3>Copywriting & Content Writing</h3>
+                    <p>Engage your audience with compelling copy that converts. From website content to blog posts and ad copy, we craft words that sell and stories that connect.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📢</div>
+                    <h3>Digital Ads (Instagram, Facebook, Google)</h3>
+                    <p>Maximize your ROI with targeted advertising campaigns. We create, manage, and optimize ads across all major platforms to reach your ideal customers and drive results.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Copywriting Section -->
+        <section>
+            <div class="section-header">
+                <h2>Professional Copywriting</h2>
+                <p>Words that convert browsers into buyers</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Website Content</h3>
+                    <p>Engaging, SEO-optimized content that tells your brand story and drives conversions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Social Media Captions</h3>
+                    <p>Catchy, scroll-stopping captions that boost engagement and build community.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>Ad Copy</h3>
+                    <p>High-conversion ad copy designed to maximize click-through rates and sales.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📖</div>
+                    <h3>Brand Storytelling</h3>
+                    <p>Compelling narratives that connect emotionally with your audience and build loyalty.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ads & Marketing Section -->
+        <section>
+            <div class="section-header">
+                <h2>Digital Advertising</h2>
+                <p>Targeted campaigns that deliver real results</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📷</div>
+                    <h3>Instagram Ads</h3>
+                    <p>Visually stunning ads optimized for Instagram's unique audience and platform features.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Facebook Ads</h3>
+                    <p>Strategic Facebook campaigns that reach your ideal customers and drive conversions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Google Ads</h3>
+                    <p>Search and display ads that put your business in front of customers actively looking for you.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Audience Targeting</h3>
+                    <p>Advanced targeting strategies to ensure your ads reach the right people at the right time.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Performance Tracking</h3>
+                    <p>Detailed analytics and reporting to monitor campaign success and optimize for better results.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Packages Page -->
+    <div id="packages" class="page-section">
+        <section style="padding-top: 8rem;">
+            <div class="section-header">
+                <h2>Web Design Packages</h2>
+                <p>Choose the perfect plan for your business needs</p>
+            </div>
+            <div class="pricing-grid">
+                <!-- Starter Package -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <p>Perfect for personal brands & small businesses</p>
+                    </div>
+                    <div class="price">₹3,000 <span>initial</span></div>
+                    <div class="maintenance">₹999/month maintenance</div>
+                    <ul class="features-list">
+                        <li>1-3 Page Website</li>
+                        <li>Basic UI/UX Design</li>
+                        <li>Mobile Responsive</li>
+                        <li>Basic SEO Setup</li>
+                        <li>Contact Form Integration</li>
+                        <li>7-Day Delivery</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <a href="#contact" onclick="showPage('contact')" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+                </div>
+
+                <!-- Pro Package -->
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <p>Ideal for growing businesses</p>
+                    </div>
+                    <div class="price">₹8,000 <span>initial</span></div>
+                    <div class="maintenance">₹1,999/month maintenance</div>
+                    <ul class="features-list">
+                        <li>4-7 Page Website</li>
+                        <li>Premium UI/UX Design</li>
+                        <li>Mobile + Tablet Responsive</li>
+                        <li>SEO Optimized</li>
+                        <li>Basic Copywriting Included</li>
+                        <li>Google Analytics Setup</li>
+                        <li>Social Media Integration</li>
+                        <li>14-Day Delivery</li>
+                        <li>Priority Email Support</li>
+                    </ul>
+                    <a href="#contact" onclick="showPage('contact')" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                </div>
+
+                <!-- Elite Package -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Elite</h3>
+                        <p>Ultimate solution for brands & agencies</p>
+                    </div>
+                    <div class="price">₹15,000 <span>initial</span></div>
+                    <div class="maintenance">₹3,999/month maintenance</div>
+                    <ul class="features-list">
+                        <li>Unlimited Pages</li>
+                        <li>Custom UI/UX & Animations</li>
+                        <li>Advanced SEO Strategy</li>
+                        <li>Full Professional Copywriting</li>
+                        <li>Custom Features & Integrations</li>
+                        <li>Instagram/Facebook/Google Ads Setup</li>
+                        <li>Advanced Analytics & Tracking</li>
+                        <li>E-commerce Ready (Optional)</li>
+                        <li>21-Day Delivery</li>
+                        <li>Dedicated Support Manager</li>
+                    </ul>
+                    <a href="#contact" onclick="showPage('contact')" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: var(--card-bg); border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">All Packages Include</h3>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">Premium features to ensure your success</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔒</div>
+                        <h3>SSL Certificate</h3>
+                        <p>Secure hosting with HTTPS encryption for visitor trust and SEO benefits.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Fast Loading Speed</h3>
+                        <p>Optimized performance for better user experience and search rankings.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3>Custom Design</h3>
+                        <p>Unique designs tailored to your brand, never template-based.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔄</div>
+                        <h3>Regular Updates</h3>
+                        <p>Monthly maintenance includes content updates and security patches.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Portfolio Page -->
+    <div id="portfolio" class="page-section">
+        <section style="padding-top: 8rem;">
+            <div class="section-header">
+                <h2>Our Work</h2>
+                <p>Showcasing projects that drive results</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-img">🛍️</div>
+                    <div class="portfolio-info">
+                        <h3>E-commerce Fashion Store</h3>
+                        <p>Modern online store with custom shopping cart and payment integration. Increased sales by 200% in first quarter.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">🍕</div>
+                    <div class="portfolio-info">
+                        <h3>Restaurant Website</h3>
+                        <p>Elegant website with online ordering system and table reservation features. Mobile orders up 300%.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">💪</div>
+                    <div class="portfolio-info">
+                        <h3>Fitness Coaching Platform</h3>
+                        <p>Interactive platform with member portal, class schedules, and video content. 500+ active members.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">🏡</div>
+                    <div class="portfolio-info">
+                        <h3>Real Estate Agency</h3>
+                        <p>Property listing website with advanced search and virtual tours. Generated 50+ qualified leads monthly.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">📚</div>
+                    <div class="portfolio-info">
+                        <h3>Educational Institute</h3>
+                        <p>Comprehensive website with course management and student portal. Enrollment increased 150%.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">💼</div>
+                    <div class="portfolio-info">
+                        <h3>Corporate Consulting Firm</h3>
+                        <p>Professional website showcasing services and case studies. Positioned as industry leader.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">Ready to See Your Project Here?</h3>
+                <a href="#contact" onclick="showPage('contact')" class="btn btn-primary">Start Your Project</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page-section">
+        <section style="padding-top: 8rem;">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About AE Freelancing Agency</h2>
+                    <p>We are a modern digital agency passionate about helping businesses thrive in the digital landscape. Since our inception, we've been committed to delivering exceptional design, development, and marketing solutions that drive real results.</p>
+                    <p>Our team combines creative excellence with technical expertise to transform your vision into digital reality. We believe every brand has a unique story, and we're here to help you tell it in the most compelling way possible.</p>
+                    <p>From startups to established businesses, we've helped hundreds of clients build their online presence, increase their visibility, and achieve their business goals. Your success is our success.</p>
+                    <div class="cta-buttons" style="justify-content: flex-start; margin-top: 2rem;">
+                        <a href="#contact" onclick="showPage('contact')" class="btn btn-primary">Work With Us</a>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Satisfaction Rate</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>Why Choose AE?</h2>
+                <p>What sets us apart from the competition</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Fast Turnaround</h3>
+                    <p>We deliver quality work on time, every time. Your deadlines are our priority.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💎</div>
+                    <h3>Premium Quality</h3>
+                    <p>We never compromise on quality. Every project receives our full attention and expertise.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤝</div>
+                    <h3>Client-Focused</h3>
+                    <p>Your vision guides our work. We collaborate closely to ensure complete satisfaction.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden fees, no surprises. What you see is what you pay.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>Unlimited Revisions</h3>
+                    <p>We work until you're 100% satisfied with the final result.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📞</div>
+                    <h3>Ongoing Support</h3>
+                    <p>We're here for you long after project completion with dedicated support.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page-section">
+        <section style="padding-top: 8rem;">
+            <div class="section-header">
+                <h2>Let's Work Together</h2>
+                <p>Get in touch and let's build something amazing</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3 style="font-size: 2rem; margin-bottom: 2rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Send Us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" placeholder="+91 XXXXX XXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Service Interested In</label>
+                            <input type="text" placeholder="e.g., Website Design, Logo Design">
+                        </div>
+                        <div class="form-group">
+                            <label>Project Details</label>
+                            <textarea placeholder="Tell us about your project requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <h4>📧 Email Us</h4>
+                        <p>wdgbadbunny14@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📱 Follow Us on Instagram</h4>
+                        <p>@ae_freelancing_agency</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>⏰ Business Hours</h4>
+                        <p>Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>🌐 Connect With Us</h4>
+                        <p>Facebook | LinkedIn | Twitter</p>
+                    </div>
+                    <div style="margin-top: 2rem; padding: 2rem; background: rgba(0, 212, 255, 0.1); border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2);">
+                        <h4 style="color: var(--neon-blue); margin-bottom: 1rem;">Quick Response Guarantee</h4>
+                        <p>We respond to all inquiries within 24 hours. For urgent projects, reach out via email or Instagram DM!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="AE_freelancing_agecy.png" alt="AE Freelancing Agency">
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Design. Digital. Domination.</p>
+            <div class="footer-links">
+                <a href="#home" onclick="showPage('home')">Home</a>
+                <a href="#services" onclick="showPage('services')">Services</a>
+                <a href="#packages" onclick="showPage('packages')">Packages</a>
+                <a href="#portfolio" onclick="showPage('portfolio')">Portfolio</a>
+                <a href="#about" onclick="showPage('about')">About</a>
+                <a href="#contact" onclick="showPage('contact')">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 AE Freelancing Agency. All rights reserved. Crafted with passion and precision.
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+
+        // Add scroll effect to nav
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+                nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+              
